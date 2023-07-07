@@ -1,3 +1,5 @@
+#include "../include/renderEngine.h"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
@@ -5,11 +7,10 @@
 #include <string.h>
 
 #include <cstddef>
+#include <cstdint>
 #include <cstring>
 #include <iostream>
 #include <string>
-
-#include "../include/renderEngine.h"
 
 SDL_Texture* playerTexture;
 SDL_Rect srcR, destR;
@@ -18,6 +19,11 @@ SDL_Renderer* renderEngine::renderer = nullptr;
 
 renderEngine::renderEngine() {}
 renderEngine::~renderEngine() {}
+
+// Simulation Output
+SDL_Rect srcRect, destRect;
+SDL_Texture* tex;
+SDL_Surface* surface;
 
 void renderEngine::Initialise(const char* title, int xpos, int ypos, int w,
                               int h, bool fullscreen) {
@@ -41,6 +47,46 @@ void renderEngine::Initialise(const char* title, int xpos, int ypos, int w,
   } else {
     isRunning = false;
   }
+
+  // Simulation Output
+  // SDL_Surface* tmp_surface = IMG_Load("../player.png");
+  // tex = SDL_CreateTextureFromSurface(renderer, tmp_surface);
+  // SDL_FreeSurface(tmp_surface);
+  int img_width = 32;
+  int img_height = 32;
+  int channels = 3;  // for a RGB image
+  char* pixels = new char[img_width * img_height * channels];
+
+  for (int x = 0; x < img_width; x++) {
+    for (int y = 0; y < img_width; y++) {
+      if ((x + y) % 2 == 0) {
+        pixels[x + (y * img_width)] = 0b11111000;
+      } else {
+        pixels[x + (y * img_width)] = 0b11111000;
+      }
+    }
+  }
+
+  surface = SDL_CreateRGBSurfaceFrom((void*)pixels, img_width, img_height,
+                                     channels * 8,  // bits per pixel = 24
+                                     img_width * channels,  // pitch
+                                     0x0000FF,              // red mask
+                                     0x00FF00,              // green mask
+                                     0xFF0000,              // blue mask
+                                     0);                    // alpha mask (none)
+
+  tex = SDL_CreateTextureFromSurface(renderer, surface);
+  SDL_FreeSurface(surface);
+
+  srcRect.h = 32;
+  srcRect.w = 32;
+  srcRect.x = 0;
+  srcRect.y = 0;
+
+  destRect.x = 0;
+  destRect.y = 0;
+  destRect.w = 800;
+  destRect.h = 640;
 }
 
 void renderEngine::Events() {
@@ -62,6 +108,7 @@ void renderEngine::Update() {
 
 void renderEngine::Render() {
   SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, tex, &srcRect, &destRect);
   SDL_RenderPresent(renderer);
 }
 

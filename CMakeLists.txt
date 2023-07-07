@@ -15,4 +15,4 @@ ${HEADER_FILES}
 
 add_executable(Simulator src/main.cpp)
 
-target_link_libraries(Simulator SDL2 FluidisedBed)
+target_link_libraries(Simulator SDL2 SDL2_image FluidisedBed)

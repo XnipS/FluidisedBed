@@ -1,4 +1,6 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_timer.h>
 
@@ -8,20 +10,20 @@
 #include "../include/core.h"
 #include "../include/renderEngine.h"
 
-renderEngine *engine = nullptr;
+renderEngine* renderer = nullptr;
 Uint32 frameStart;
 int currentTickTime;
 
-int main(int argc, char *args[]) {
-  engine = new renderEngine();
+int main(int argc, char* args[]) {
+  renderer = new renderEngine();
 
-  engine->Initialise("Fluidised Bed Engine", 0, 0, 800, 640, false);
+  renderer->Initialise("Fluidised Bed Engine", 0, 0, 800, 640, false);
 
-  while (engine->Running()) {
+  while (renderer->Running()) {
     frameStart = SDL_GetTicks();
-    engine->Events();
-    engine->Update();
-    engine->Render();
+    renderer->Events();
+    renderer->Update();
+    renderer->Render();
 
     currentTickTime = SDL_GetTicks() - frameStart;
     if (RE_TICKRATE_TIME > currentTickTime) {
@@ -33,6 +35,6 @@ int main(int argc, char *args[]) {
     }
   }
 
-  engine->Clean();
+  renderer->Clean();
   return 0;
 }
