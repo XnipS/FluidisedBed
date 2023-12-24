@@ -30,6 +30,7 @@ file(GLOB IMPLOT_PATH
 # Imgui include
 INCLUDE_DIRECTORIES(
     ${IMGUI_PATH}
+	${SDL2_INCLUDE_DIRS}
 )
 # BUILD imgui
 add_library(imgui STATIC ${IMGUI_GLOB})
