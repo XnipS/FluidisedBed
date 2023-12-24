@@ -27,6 +27,9 @@
     <ClCompile Include="depend\imgui\imgui_draw.cpp" />
     <ClCompile Include="depend\imgui\imgui_tables.cpp" />
     <ClCompile Include="depend\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="depend\implot\implot.cpp" />
+    <ClCompile Include="depend\implot\implot_demo.cpp" />
+    <ClCompile Include="depend\implot\implot_items.cpp" />
     <ClCompile Include="src\fluidEngine.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\renderEngine.cpp" />
@@ -42,13 +45,11 @@
     <ClInclude Include="depend\imgui\imstb_rectpack.h" />
     <ClInclude Include="depend\imgui\imstb_textedit.h" />
     <ClInclude Include="depend\imgui\imstb_truetype.h" />
+    <ClInclude Include="depend\implot\implot.h" />
+    <ClInclude Include="depend\implot\implot_internal.h" />
     <ClInclude Include="include\core.h" />
     <ClInclude Include="include\fluidEngine.h" />
     <ClInclude Include="include\renderEngine.h" />
-    <ClInclude Include="vclib\GLEW\include\GL\eglew.h" />
-    <ClInclude Include="vclib\GLEW\include\GL\glew.h" />
-    <ClInclude Include="vclib\GLEW\include\GL\glxew.h" />
-    <ClInclude Include="vclib\GLEW\include\GL\wglew.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -103,20 +104,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)\depend\imgui;$(ProjectDir)\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\implot;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)\depend\implot;$(ProjectDir)\depend\imgui;$(ProjectDir)\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)\depend\imgui;$(ProjectDir)\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\implot;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)\depend\implot;$(ProjectDir)\depend\imgui;$(ProjectDir)\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)\depend\imgui;$(ProjectDir)\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\implot;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)\depend\imgui;$(ProjectDir)\depend\implot;$(ProjectDir)\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)\depend\imgui;$(ProjectDir)\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)\vclib\GLEW\include;$(ProjectDir)\vclib\SDL2\include;$(ProjectDir)\include;$(ProjectDir)\depend\VectorMath\include;$(ProjectDir)\depend\implot;$(ProjectDir)\depend\imgui;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)\depend\imgui;$(ProjectDir)\depend\implot;$(ProjectDir)\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,7 +132,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\vclib\SDL2\lib\x86;$(ProjectDir)\vclib\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ShowProgress>NotSet</ShowProgress>
+      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,7 +152,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\vclib\SDL2\lib\x86;$(ProjectDir)\vclib\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ShowProgress>NotSet</ShowProgress>
+      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -165,9 +166,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\vclib\SDL2\lib\x64;$(ProjectDir)\vclib\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\vclib\SDL2\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ShowProgress>NotSet</ShowProgress>
+      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -185,9 +186,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\vclib\SDL2\lib\x64;$(ProjectDir)\vclib\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\vclib\SDL2\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ShowProgress>NotSet</ShowProgress>
+      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

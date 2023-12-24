@@ -261,31 +261,32 @@ void renderEngine::Update() {
   // Data Output
   ImGui::Begin("Data", NULL);
   if (ImPlot::BeginPlot("Red Particle Data")) {
-    float time[settings->particle.GetMax()];
+   // float time[settings->particle.GetMax()];
+    static std::vector<float> time(settings->particle.GetMax());
     for (int i = 0; i < settings->particle.GetMax(); i++) {
       time[i] = i;
     }
-    float data[settings->particle.GetMax()];
+    static  std::vector<float> data(settings->particle.GetMax());
     for (int i = 0; i < settings->particle.GetMax(); i++) {
       data[i] = settings->particle.GetStats()[i].vel_y;
     }
-    float data2[settings->particle.GetMax()];
+    static  std::vector<float> data2(settings->particle.GetMax());
     for (int i = 0; i < settings->particle.GetMax(); i++) {
       data2[i] = settings->particle.GetStats()[i].vel_x;
     }
-    float data3[settings->particle.GetMax()];
+    static  std::vector<float> data3(settings->particle.GetMax());
     for (int i = 0; i < settings->particle.GetMax(); i++) {
       data3[i] = settings->particle.GetStats()[i].pos_y;
     }
-    float data4[settings->particle.GetMax()];
+    static  std::vector<float> data4(settings->particle.GetMax());
     for (int i = 0; i < settings->particle.GetMax(); i++) {
       data4[i] = settings->particle.GetStats()[i].pos_x;
     }
-    ImPlot::PlotLine("Acceleration Y", time, data, settings->particle.GetMax());
-    ImPlot::PlotLine("Acceleration X", time, data2,
-                     settings->particle.GetMax());
-    ImPlot::PlotLine("Pos Y", time, data3, settings->particle.GetMax());
-    ImPlot::PlotLine("Pos X", time, data4, settings->particle.GetMax());
+    ImPlot::PlotLine("Acceleration Y", &time[0], &data[0], settings->particle.GetMax());
+    ImPlot::PlotLine("Acceleration X",& time[0], &data2[0],
+                    settings->particle.GetMax());
+    ImPlot::PlotLine("Pos Y",& time[0], &data3[0], settings->particle.GetMax());
+    ImPlot::PlotLine("Pos X", &time[0], &data4[0], settings->particle.GetMax());
     ImPlot::EndPlot();
   }
   ImGui::End();

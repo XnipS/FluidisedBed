@@ -16,6 +16,7 @@ Original goal to simulate a 2D fluidised bed with configurable chamber settings,
 
 - Clone with submodules `git clone --recurse-submodules https://github.com/XnipS/FluidisedBed.git`
 - Download [SDL2](https://github.com/libsdl-org/SDL/releases/latest) `SDL2-devel-2.28.1-VC.zip` version and extract contents to FluidisedBed/vclib/SDL2
+- If you are running in a VM (missing opengl3), then download [opengl32.dll](https://fdossena.com/?p=mesa/index.frag) and move to build output folder.
 - May need to copy and paste relevant .dll from FluidisedBed/vclib/SDL2/lib to your build output folder.
 
 ## Linux

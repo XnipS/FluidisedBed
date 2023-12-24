@@ -16,8 +16,8 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{c574caa4-327e-4abc-9cf2-90d62d2cfa25}</UniqueIdentifier>
     </Filter>
-    <Filter Include="glew">
-      <UniqueIdentifier>{6ff541fe-bdfb-4325-8e12-faae63dad40d}</UniqueIdentifier>
+    <Filter Include="implot">
+      <UniqueIdentifier>{d1db5c1f-155a-4737-982d-0ce07d75caa8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +53,15 @@
     </ClCompile>
     <ClCompile Include="depend\imgui\backends\imgui_impl_sdl2.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="depend\implot\implot.cpp">
+      <Filter>implot</Filter>
+    </ClCompile>
+    <ClCompile Include="depend\implot\implot_items.cpp">
+      <Filter>implot</Filter>
+    </ClCompile>
+    <ClCompile Include="depend\implot\implot_demo.cpp">
+      <Filter>implot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,17 +104,11 @@
     <ClInclude Include="depend\imgui\backends\imgui_impl_sdl2.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="vclib\GLEW\include\GL\eglew.h">
-      <Filter>glew</Filter>
+    <ClInclude Include="depend\implot\implot.h">
+      <Filter>implot</Filter>
     </ClInclude>
-    <ClInclude Include="vclib\GLEW\include\GL\glew.h">
-      <Filter>glew</Filter>
-    </ClInclude>
-    <ClInclude Include="vclib\GLEW\include\GL\glxew.h">
-      <Filter>glew</Filter>
-    </ClInclude>
-    <ClInclude Include="vclib\GLEW\include\GL\wglew.h">
-      <Filter>glew</Filter>
+    <ClInclude Include="depend\implot\implot_internal.h">
+      <Filter>implot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
